@@ -9,7 +9,7 @@ import ControlPanelControl from '../../components/control-panel-control';
 const { __ } = wp.i18n;
 const { InnerBlocks, InspectorControls, ColorPalette, MediaPlaceholder } = wp.editor
 const { Fragment } = wp.element
-const { PanelBody, Button, Dashicon, SelectControl } = wp.components
+const { PanelBody, Button, Dashicon, SelectControl, RangeControl } = wp.components
 
 const SectionBlockEdit = ({
 	props,
@@ -29,6 +29,13 @@ const SectionBlockEdit = ({
 		backgroundPosition,
 		backgroundRepeat,
 		backgroundSize,
+		backgroundGradientType,
+		backgroundGradientAngle,
+		backgroundGradientPosition,
+		backgroundGradientFirstColor,
+		backgroundGradientFirstLocation,
+		backgroundGradientSecondColor,
+		backgroundGradientSecondLocation
 	} = props.attributes
 
 	if ( undefined === id || id.substr( id.length - 8 ) !== props.clientId.substr( 0, 8 ) ) {
@@ -54,10 +61,25 @@ const SectionBlockEdit = ({
 		};
 	}
 
+	if ( 'gradient' === backgroundType ) {
+		let direction;
+
+		if ( 'linear' === backgroundGradientType ) {
+			direction = `${ backgroundGradientAngle }deg`;
+		} else {
+			direction = `at ${ backgroundGradientPosition }`;
+		}
+
+		if ( backgroundGradientFirstColor || backgroundGradientSecondColor ) {
+			background = {
+				background: `${ backgroundGradientType }-gradient( ${ direction }, ${ backgroundGradientFirstColor || 'rgba( 0, 0, 0, 0 )' } ${ backgroundGradientFirstLocation }%, ${ backgroundGradientSecondColor || 'rgba( 0, 0, 0, 0 )' } ${ backgroundGradientSecondLocation }% )`
+			};
+		}
+	}
+
 	const style = {
 		...background
 	};
-
 	const classes = classnames(
 		props.className
 	);
@@ -65,39 +87,53 @@ const SectionBlockEdit = ({
 	const changeBackgroundType = value => {
 		props.setAttributes({ backgroundType: value });
 	};
-
 	const changeBackgroundColor = value => {
 		props.setAttributes({ backgroundColor: value });
 	};
-
 	const changeBackgroundImage = value => {
 		props.setAttributes({
 			backgroundImageID: value.id,
 			backgroundImageURL: value.url
 		});
 	};
-
 	const removeBackgroundImage = () => {
 		props.setAttributes({
 			backgroundImageID: '',
 			backgroundImageURL: ''
 		});
 	};
-
 	const changeBackgroundAttachment = value => {
 		props.setAttributes({ backgroundAttachment: value });
 	};
-
 	const changeBackgroundPosition = value => {
 		props.setAttributes({ backgroundPosition: value });
 	};
-
 	const changeBackgroundRepeat = value => {
 		props.setAttributes({ backgroundRepeat: value });
 	};
-
 	const changeBackgroundSize = value => {
 		props.setAttributes({ backgroundSize: value });
+	};
+	const changeBackgroundGradientType = value => {
+		props.setAttributes({ backgroundGradientType: value });
+	};
+	const changeBackgroundGradientAngle = value => {
+		props.setAttributes({ backgroundGradientAngle: value });
+	};
+	const changeBackgroundGradientPosition = value => {
+		props.setAttributes({ backgroundGradientPosition: value });
+	};
+	const changeBackgroundGradientFirstColor = value => {
+		props.setAttributes({ backgroundGradientFirstColor: value });
+	};
+	const changeBackgroundGradientFirstLocation = value => {
+		props.setAttributes({ backgroundGradientFirstLocation: value });
+	};
+	const changeBackgroundGradientSecondColor = value => {
+		props.setAttributes({ backgroundGradientSecondColor: value });
+	};
+	const changeBackgroundGradientSecondLocation = value => {
+		props.setAttributes({ backgroundGradientSecondLocation: value });
 	};
 
 	return (
@@ -280,7 +316,68 @@ const SectionBlockEdit = ({
 							) || 'gradient' === backgroundType && (
 
 								<Fragment>
+									<SelectControl
+										label={ __( 'Type' ) }
+										value={ backgroundGradientType }
+										options={ [
+											{ label: 'Linear', value: 'linear' },
+											{ label: 'Radial', value: 'radial' }
+										] }
+										onChange={ changeBackgroundGradientType }
+									/>
+									{ 'linear' === backgroundGradientType ?
+										<RangeControl
+											label={ __( 'Angle' ) }
+											value={ backgroundGradientAngle }
+											onChange={ changeBackgroundGradientAngle }
+											min={ 0 }
+											max={ 360 }
+										/>	:
+										<SelectControl
+											label={ __( 'Position' ) }
+											value={ backgroundGradientPosition }
+											options={ [
+												{ label: 'Top Left', value: 'top left' },
+												{ label: 'Top Center', value: 'top center' },
+												{ label: 'Top Right', value: 'top right' },
+												{ label: 'Center Left', value: 'center left' },
+												{ label: 'Center Center', value: 'center center' },
+												{ label: 'Center Right', value: 'center right' },
+												{ label: 'Bottom Left', value: 'bottom left' },
+												{ label: 'Bottom Center', value: 'bottom center' },
+												{ label: 'Bottom Right', value: 'bottom right' }
+											] }
+											onChange={ changeBackgroundGradientPosition }
+										/>
+									}
+
 									<p>{ __( 'First Color' ) }</p>
+									<ColorPalette
+										label={ __( 'Color' ) }
+										value={ backgroundGradientFirstColor }
+										onChange={ changeBackgroundGradientFirstColor }
+									/>
+									<RangeControl
+										label={ __( 'Location' ) }
+										value={ backgroundGradientFirstLocation }
+										onChange={ changeBackgroundGradientFirstLocation }
+										min={ 0 }
+										max={ 100 }
+									/>
+
+									<p>{ __( 'Second Color' ) }</p>
+									<ColorPalette
+										label={ __( 'Color' ) }
+										value={ backgroundGradientSecondColor }
+										onChange={ changeBackgroundGradientSecondColor }
+									/>
+									<RangeControl
+										label={ __( 'Location' ) }
+										value={ backgroundGradientSecondLocation }
+										onChange={ changeBackgroundGradientSecondLocation }
+										min={ 0 }
+										max={ 100 }
+									/>
 								</Fragment>
 
 							)}

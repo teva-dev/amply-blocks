@@ -17,6 +17,13 @@ const sectionBlockSave = props => {
 		backgroundPosition,
 		backgroundRepeat,
 		backgroundSize,
+		backgroundGradientType,
+		backgroundGradientAngle,
+		backgroundGradientPosition,
+		backgroundGradientFirstColor,
+		backgroundGradientFirstLocation,
+		backgroundGradientSecondColor,
+		backgroundGradientSecondLocation
 	} = props.attributes;
 
 	const classes = classnames(
@@ -38,6 +45,20 @@ const sectionBlockSave = props => {
 			backgroundPosition,
 			backgroundRepeat,
 			backgroundSize
+		};
+	}
+
+	if ( 'gradient' === backgroundType ) {
+		let direction;
+
+		if ( 'linear' === backgroundGradientType ) {
+			direction = `${ backgroundGradientAngle }deg`;
+		} else {
+			direction = `at ${ backgroundGradientPosition }`;
+		}
+
+		background = {
+			background: `${ backgroundGradientType }-gradient( ${ direction }, ${ backgroundGradientFirstColor || 'rgba( 0, 0, 0, 0 )' } ${ backgroundGradientFirstLocation }%, ${ backgroundGradientSecondColor || 'rgba( 0, 0, 0, 0 )' } ${ backgroundGradientSecondLocation }% )`
 		};
 	}
 

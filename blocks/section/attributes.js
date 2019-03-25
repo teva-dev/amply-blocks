@@ -35,6 +35,34 @@ const sectionBlockAttributes = {
 		type: 'string',
 		default: 'auto'
 	},
+	backgroundGradientType: {
+		type: 'string',
+		default: 'linear'
+	},
+	backgroundGradientAngle: {
+		type: 'number',
+		default: 90
+	},
+	backgroundGradientPosition: {
+		type: 'string',
+		default: 'center center'
+	},
+	backgroundGradientFirstColor: {
+		type: 'string',
+		default: '#36d1dc'
+	},
+	backgroundGradientFirstLocation: {
+		type: 'number',
+		default: 0
+	},
+	backgroundGradientSecondColor: {
+		type: 'string',
+		default: '#5b86e5'
+	},
+	backgroundGradientSecondLocation: {
+		type: 'number',
+		default: 100
+	},
 }
 
 export default sectionBlockAttributes
