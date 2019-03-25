@@ -1,0 +1,76 @@
+.amply-blocks-inspector-header-tabs {
+	&.is-opened {
+		padding: 0;
+	}
+
+	.header-tab {
+
+		display: inline-block;
+		width: calc( 100% / 3 );
+		padding: 10px 20px;
+		text-align: center;
+		cursor: pointer;
+
+		&.is-selected {
+			border-bottom: 2px solid #0085ba;
+			background: #f3f4f5;
+		}
+
+		&:hover {
+			background: #f3f4f5;
+		}
+
+		span {
+			display: inline-block;
+			font-size: 12px;
+
+			svg {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	}
+
+}
+
+.image-container {
+	width: 100%;
+	height: 150px;
+	position: relative;
+
+	.image-holder {
+		width: auto;
+		height: 100%;
+		background-size: cover;
+	}
+
+	.image-delete {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		text-align: center;
+		color: #fff;
+		background-color: #00000080;
+		transition: all .2s ease-in-out;
+		box-shadow: 0 0 3px 3px rgba(0,0,0,.1);
+		height: 100%;
+		flex-wrap: wrap;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 18px;
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	&:hover {
+		.image-delete {
+			opacity: 1;
+		}
+	}
+}
+
+.image-delete-button {
+	margin: 10px 0 15px;
+}

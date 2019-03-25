@@ -1,4 +1,101 @@
+.amply-blocks-inspector-header-tabs.is-opened {
+  padding: 0; }
+
+.amply-blocks-inspector-header-tabs .header-tab {
+  display: inline-block;
+  width: calc( 100% / 3);
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer; }
+  .amply-blocks-inspector-header-tabs .header-tab.is-selected {
+    border-bottom: 2px solid #0085ba;
+    background: #f3f4f5; }
+  .amply-blocks-inspector-header-tabs .header-tab:hover {
+    background: #f3f4f5; }
+  .amply-blocks-inspector-header-tabs .header-tab span {
+    display: inline-block;
+    font-size: 12px; }
+    .amply-blocks-inspector-header-tabs .header-tab span svg {
+      display: block;
+      margin: 0 auto; }
+
+.image-container {
+  width: 100%;
+  height: 150px;
+  position: relative; }
+  .image-container .image-holder {
+    width: auto;
+    height: 100%;
+    background-size: cover; }
+  .image-container .image-delete {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fff;
+    background-color: #00000080;
+    transition: all .2s ease-in-out;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    font-size: 18px;
+    opacity: 0;
+    cursor: pointer; }
+  .image-container:hover .image-delete {
+    opacity: 1; }
+
+.image-delete-button {
+  margin: 10px 0 15px; }
 .wp-block-amply-static .sorry.warning {
   background: #C44D58;
   color: white;
   font-size: 1.2rem; }
+.amply-blocks-background-type-control {
+  margin: 0 0 1.5em 0; }
+  .amply-blocks-background-type-control .components-base-control__title {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between; }
+    .amply-blocks-background-type-control .components-base-control__title label {
+      padding: 5px 0; }
+    .amply-blocks-background-type-control .components-base-control__title .linking-controls {
+      display: -ms-flexbox;
+      display: flex; }
+      .amply-blocks-background-type-control .components-base-control__title .linking-controls button svg {
+        width: 20px; }
+      .amply-blocks-background-type-control .components-base-control__title .linking-controls button.is-primary {
+        z-index: 0; }
+        .amply-blocks-background-type-control .components-base-control__title .linking-controls button.is-primary svg {
+          fill: #fff; }
+        .amply-blocks-background-type-control .components-base-control__title .linking-controls button.is-primary:hover {
+          background: #007eb1;
+          border-color: #006a95 #00648c #00648c;
+          box-shadow: inset 0 -1px 0 #00648c;
+          color: #fff;
+          text-decoration: none;
+          text-shadow: 0 -1px 1px #005d82,1px 0 1px #005d82,0 1px 1px #005d82,-1px 0 1px #005d82; }
+.amply-blocks-control-panel-control {
+  padding: 10px 0; }
+  .amply-blocks-control-panel-control .components-base-control__title {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between; }
+    .amply-blocks-control-panel-control .components-base-control__title label {
+      padding: 5px 0; }
+    .amply-blocks-control-panel-control .components-base-control__title .floating-controls {
+      display: -ms-flexbox;
+      display: flex; }
+
+.amply-popover-settings {
+  padding: 10px;
+  overflow: hidden; }

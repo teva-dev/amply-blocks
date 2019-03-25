@@ -6,13 +6,14 @@ import './style.scss';
 
 import sectionBlockAttributes from './attributes'
 import SectionBlockEdit from './edit';
+import SectionBlockSave from './save';
 
 /**
  * Internal block libraries
  */
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const {	compose } = wp.compose;
+const {	compose, withState } = wp.compose;
 
 const { withDispatch, withSelect } = wp.data;
 
@@ -20,9 +21,9 @@ const { withDispatch, withSelect } = wp.data;
  * Register block
  */
 export default registerBlockType(
-	'amply/block1',
+	'amply-blocks/section',
 	{
-		'title': __('BLock1'),
+		'title': __('section'),
 		category: 'common',
 		icon: {
 			background: 'rgba(254, 243, 224, 0.52)',
@@ -34,7 +35,7 @@ export default registerBlockType(
 		],
 		supports: {
 			align: [ 'wide', 'full' ], // Support only Wide and Full alignment controls
-			anchor: true,
+			html: false
 		},
 		attributes: sectionBlockAttributes,
 
@@ -59,10 +60,12 @@ export default registerBlockType(
 				};
 			}),
 
+			withState({
+				tab: 'layout',
+			}),
+
 		])(SectionBlockEdit),
 
-		save() {
-			return null;
-		}
+		save: SectionBlockSave,
 	}
 );

@@ -11,4 +11,4 @@ import './editor.scss';
  */
 import "./static";
 import "./dynamic";
-import "./block1";
+import "./section";
