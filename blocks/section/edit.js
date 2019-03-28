@@ -35,15 +35,31 @@ const SectionBlockEdit = ({
 		backgroundGradientFirstColor,
 		backgroundGradientFirstLocation,
 		backgroundGradientSecondColor,
-		backgroundGradientSecondLocation
+		backgroundGradientSecondLocation,
+		backgroundOverlayType,
+		backgroundOverlayOpacity,
+		backgroundOverlayColor,
+		backgroundOverlayImageID,
+		backgroundOverlayImageURL,
+		backgroundOverlayAttachment,
+		backgroundOverlayPosition,
+		backgroundOverlayRepeat,
+		backgroundOverlaySize,
+		backgroundOverlayGradientType,
+		backgroundOverlayGradientAngle,
+		backgroundOverlayGradientPosition,
+		backgroundOverlayGradientFirstColor,
+		backgroundOverlayGradientFirstLocation,
+		backgroundOverlayGradientSecondColor,
+		backgroundOverlayGradientSecondLocation
 	} = props.attributes
 
 	if ( undefined === id || id.substr( id.length - 8 ) !== props.clientId.substr( 0, 8 ) ) {
-		const blockInstanceId = `wp-block-themeisle-blocks-advanced-columns-${ props.clientId.substr( 0, 8 ) }`;
+		const blockInstanceId = `amply-blocks-section-${ props.clientId.substr( 0, 8 ) }`;
 		props.setAttributes({ id: blockInstanceId });
 	}
 
-	let background
+	let background, overlayBackground
 
 	if ( 'color' === backgroundType ) {
 		background = {
@@ -79,10 +95,47 @@ const SectionBlockEdit = ({
 
 	const style = {
 		...background
-	};
+	}
+
+	if ( 'color' === backgroundOverlayType ) {
+		overlayBackground = {
+			background: backgroundOverlayColor,
+			opacity: backgroundOverlayOpacity / 100
+		};
+	}
+
+	if ( 'image' === backgroundOverlayType ) {
+		overlayBackground = {
+			backgroundImage: `url( '${ backgroundOverlayImageURL }' )`,
+			backgroundAttachment: backgroundOverlayAttachment,
+			backgroundPosition: backgroundOverlayPosition,
+			backgroundRepeat: backgroundOverlayRepeat,
+			backgroundSize: backgroundOverlaySize,
+			opacity: backgroundOverlayOpacity / 100
+		};
+	}
+
+	if ( 'gradient' === backgroundOverlayType ) {
+		let direction;
+
+		if ( 'linear' === backgroundOverlayGradientType ) {
+			direction = `${ backgroundOverlayGradientAngle }deg`;
+		} else {
+			direction = `at ${ backgroundOverlayGradientPosition }`;
+		}
+
+		overlayBackground = {
+			background: `${ backgroundOverlayGradientType }-gradient( ${ direction }, ${ backgroundOverlayGradientFirstColor || 'rgba( 0, 0, 0, 0 )' } ${ backgroundOverlayGradientFirstLocation }%, ${ backgroundOverlayGradientSecondColor || 'rgba( 0, 0, 0, 0 )' } ${ backgroundOverlayGradientSecondLocation }% )`,
+			opacity: backgroundOverlayOpacity / 100
+		};
+	}
+
+	const overlayStyle = {
+		...overlayBackground
+	}
 	const classes = classnames(
 		props.className
-	);
+	)
 
 	const changeBackgroundType = value => {
 		props.setAttributes({ backgroundType: value });
@@ -134,6 +187,60 @@ const SectionBlockEdit = ({
 	};
 	const changeBackgroundGradientSecondLocation = value => {
 		props.setAttributes({ backgroundGradientSecondLocation: value });
+	};
+	const changeBackgroundOverlayType = value => {
+		props.setAttributes({ backgroundOverlayType: value });
+	};
+	const changeBackgroundOverlayOpacity = value => {
+		props.setAttributes({ backgroundOverlayOpacity: value });
+	};
+	const changeBackgroundOverlayColor = value => {
+		props.setAttributes({ backgroundOverlayColor: value });
+	};
+	const changeBackgroundOverlayImage = value => {
+		props.setAttributes({
+			backgroundOverlayImageID: value.id,
+			backgroundOverlayImageURL: value.url
+		});
+	};
+	const removeBackgroundOverlayImage = () => {
+		props.setAttributes({
+			backgroundOverlayImageID: '',
+			backgroundOverlayImageURL: ''
+		});
+	};
+	const changeBackgroundOverlayAttachment = value => {
+		props.setAttributes({ backgroundOverlayAttachment: value });
+	};
+	const changeBackgroundOverlayPosition = value => {
+		props.setAttributes({ backgroundOverlayPosition: value });
+	};
+	const changeBackgroundOverlayRepeat = value => {
+		props.setAttributes({ backgroundOverlayRepeat: value });
+	};
+	const changeBackgroundOverlaySize = value => {
+		props.setAttributes({ backgroundOverlaySize: value });
+	};
+	const changeBackgroundOverlayGradientType = value => {
+		props.setAttributes({ backgroundOverlayGradientType: value });
+	};
+	const changeBackgroundOverlayGradientAngle = value => {
+		props.setAttributes({ backgroundOverlayGradientAngle: value });
+	};
+	const changeBackgroundOverlayGradientPosition = value => {
+		props.setAttributes({ backgroundOverlayGradientPosition: value });
+	};
+	const changeBackgroundOverlayGradientFirstColor = value => {
+		props.setAttributes({ backgroundOverlayGradientFirstColor: value });
+	};
+	const changeBackgroundOverlayGradientFirstLocation = value => {
+		props.setAttributes({ backgroundOverlayGradientFirstLocation: value });
+	};
+	const changeBackgroundOverlayGradientSecondColor = value => {
+		props.setAttributes({ backgroundOverlayGradientSecondColor: value });
+	};
+	const changeBackgroundOverlayGradientSecondLocation = value => {
+		props.setAttributes({ backgroundOverlayGradientSecondLocation: value });
 	};
 
 	return (
@@ -191,10 +298,8 @@ const SectionBlockEdit = ({
 				) || 'style' === tab && (
 
 					<Fragment>
-						
-						<PanelBody
-							title={ __( 'Background Settings' ) }
-						>
+
+						<PanelBody title={ __( 'Background Settings' ) }>
 
 							<BackgroundTypeControl
 								label={ __( 'Background Type' ) }
@@ -243,8 +348,7 @@ const SectionBlockEdit = ({
 											{ __( 'Change or Remove Image' ) }
 										</Button>
 
-										<ControlPanelControl
-											label={ 'Background Settings' }
+										<ControlPanelControl label={ 'Background Settings' }
 										>
 											<SelectControl
 												label={ __( 'Background Attachment' ) }
@@ -384,6 +488,211 @@ const SectionBlockEdit = ({
 
 						</PanelBody>
 
+						<PanelBody title={ __( 'Background Overlay' ) } initialOpen={ false }>
+
+							<BackgroundTypeControl
+								label={ __( 'Overlay Type' ) }
+								backgroundType={ backgroundOverlayType }
+								changeBackgroundType={ changeBackgroundOverlayType }
+							/>
+
+							<RangeControl
+								label={ __( 'Overlay Opacity' ) }
+								value={ backgroundOverlayOpacity }
+								onChange={ changeBackgroundOverlayOpacity }
+								min={ 0 }
+								max={ 100 }
+							/>
+
+							{ 'color' === backgroundOverlayType && (
+
+								<Fragment>
+									<p>{ __( 'Overlay Color' ) }</p>
+
+									<ColorPalette
+										label={ 'Overlay Color' }
+										value={ backgroundOverlayColor }
+										onChange={ changeBackgroundOverlayColor }
+									/>
+								</Fragment>
+
+							) || 'image' === backgroundOverlayType && (
+
+								backgroundOverlayImageURL ?
+
+									<Fragment>
+										
+										<div className="image-container">
+											<div
+												className="image-holder"
+												style={ {
+													backgroundImage: `url('${ backgroundOverlayImageURL }')`
+												} }
+											>
+											</div>
+											<div
+												className="image-delete"
+												onClick={ removeBackgroundOverlayImage }
+											>
+												<Dashicon icon="trash" />
+												<span>{ __( 'Remove Image' ) }</span>
+											</div>
+										</div>
+
+										<Button
+											isDefault
+											className="image-delete-button"
+											onClick={ removeBackgroundOverlayImage }
+										>
+											{ __( 'Change or Remove Image' ) }
+										</Button>
+
+										<ControlPanelControl label={ 'Background Settings' }>
+
+											<SelectControl
+												label={ __( 'Background Attachment' ) }
+												value={ backgroundOverlayAttachment }
+												options={ [
+													{ label: 'Scroll', value: 'scroll' },
+													{ label: 'Fixed', value: 'fixed' },
+													{ label: 'Local', value: 'local' }
+												] }
+												onChange={ changeBackgroundOverlayAttachment }
+											/>
+
+											<SelectControl
+												label={ __( 'Background Position' ) }
+												value={ backgroundOverlayPosition }
+												options={ [
+													{ label: 'Default', value: 'top left' },
+													{ label: 'Top Left', value: 'top left' },
+													{ label: 'Top Center', value: 'top center' },
+													{ label: 'Top Right', value: 'top right' },
+													{ label: 'Center Left', value: 'center left' },
+													{ label: 'Center Center', value: 'center center' },
+													{ label: 'Center Right', value: 'center right' },
+													{ label: 'Bottom Left', value: 'bottom left' },
+													{ label: 'Bottom Center', value: 'bottom center' },
+													{ label: 'Bottom Right', value: 'bottom right' }
+												] }
+												onChange={ changeBackgroundOverlayPosition }
+											/>
+
+											<SelectControl
+												label={ __( 'Background Repeat' ) }
+												value={ backgroundOverlayRepeat }
+												options={ [
+													{ label: 'Repeat', value: 'repeat' },
+													{ label: 'No-repeat', value: 'no-repeat' }
+												] }
+												onChange={ changeBackgroundOverlayRepeat }
+											/>
+
+											<SelectControl
+												label={ __( 'Background Size' ) }
+												value={ backgroundOverlaySize }
+												options={ [
+													{ label: 'Auto', value: 'auto' },
+													{ label: 'Cover', value: 'cover' },
+													{ label: 'Contain', value: 'contain' }
+												] }
+												onChange={ changeBackgroundOverlaySize }
+											/>
+
+										</ControlPanelControl>
+
+									</Fragment>
+
+								:
+
+								<MediaPlaceholder
+									icon="format-image"
+									labels={ {
+										title: __( 'Background Image' ),
+										name: __( 'an image' )
+									} }
+									value={ backgroundOverlayImageID }
+									onSelect={ changeBackgroundOverlayImage }
+									accept="image/*"
+									allowedTypes={ [ 'image' ] }
+								/>
+
+							) || 'gradient' === backgroundOverlayType && (
+
+								<Fragment>
+
+									<SelectControl
+										label={ __( 'Type' ) }
+										value={ backgroundOverlayGradientType }
+										options={ [
+											{ label: 'Linear', value: 'linear' },
+											{ label: 'Radial', value: 'radial' }
+										] }
+										onChange={ changeBackgroundOverlayGradientType }
+									/>
+
+									{ 'linear' === backgroundOverlayGradientType ?
+										<RangeControl
+											label={ __( 'Angle' ) }
+											value={ backgroundOverlayGradientAngle }
+											onChange={ changeBackgroundOverlayGradientAngle }
+											min={ 0 }
+											max={ 360 }
+										/>	:
+										<SelectControl
+											label={ __( 'Position' ) }
+											value={ backgroundOverlayGradientPosition }
+											options={ [
+												{ label: 'Top Left', value: 'top left' },
+												{ label: 'Top Center', value: 'top center' },
+												{ label: 'Top Right', value: 'top right' },
+												{ label: 'Center Left', value: 'center left' },
+												{ label: 'Center Center', value: 'center center' },
+												{ label: 'Center Right', value: 'center right' },
+												{ label: 'Bottom Left', value: 'bottom left' },
+												{ label: 'Bottom Center', value: 'bottom center' },
+												{ label: 'Bottom Right', value: 'bottom right' }
+											] }
+											onChange={ changeBackgroundOverlayGradientPosition }
+										/>
+									}
+
+									<p>{ __( 'First Color' ) }</p>
+									<ColorPalette
+										label={ __( 'Color' ) }
+										value={ backgroundOverlayGradientFirstColor }
+										onChange={ changeBackgroundOverlayGradientFirstColor }
+									/>
+									<RangeControl
+										label={ __( 'Location' ) }
+										value={ backgroundOverlayGradientFirstLocation }
+										onChange={ changeBackgroundOverlayGradientFirstLocation }
+										min={ 0 }
+										max={ 100 }
+									/>
+
+									<p>{ __( 'Second Color' ) }</p>
+
+									<ColorPalette
+										label={ __( 'Color' ) }
+										value={ backgroundOverlayGradientSecondColor }
+										onChange={ changeBackgroundOverlayGradientSecondColor }
+									/>
+
+									<RangeControl
+										label={ __( 'Location' ) }
+										value={ backgroundOverlayGradientSecondLocation }
+										onChange={ changeBackgroundOverlayGradientSecondLocation }
+										min={ 0 }
+										max={ 100 }
+									/>
+
+								</Fragment>
+								
+							)}
+
+						</PanelBody>
+
 					</Fragment>
 
 				) || 'advanced' === tab && (
@@ -397,6 +706,8 @@ const SectionBlockEdit = ({
 			</InspectorControls>
 
 			<div className={ classes } style={ style }>
+
+				<div className="amply-blocks-overlay"	style={ overlayStyle }></div>
 
 				<div className="innerblocks-wrap">
 

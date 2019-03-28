@@ -63,6 +63,67 @@ const sectionBlockAttributes = {
 		type: 'number',
 		default: 100
 	},
+	backgroundOverlayType: {
+		type: 'string',
+		default: 'color'
+	},
+	backgroundOverlayOpacity: {
+		type: 'number',
+		default: 50
+	},
+	backgroundOverlayColor: {
+		type: 'string'
+	},
+	backgroundOverlayImageID: {
+		type: 'number'
+	},
+	backgroundOverlayImageURL: {
+		type: 'string'
+	},
+	backgroundOverlayAttachment: {
+		type: 'string',
+		default: 'scroll'
+	},
+	backgroundOverlayPosition: {
+		type: 'string',
+		default: 'top left'
+	},
+	backgroundOverlayRepeat: {
+		type: 'string',
+		default: 'repeat'
+	},
+	backgroundOverlaySize: {
+		type: 'string',
+		default: 'auto'
+	},
+	backgroundOverlayGradientType: {
+		type: 'string',
+		default: 'linear'
+	},
+	backgroundOverlayGradientAngle: {
+		type: 'number',
+		default: 90
+	},
+	backgroundOverlayGradientPosition: {
+		type: 'string',
+		default: 'center center'
+	},
+	backgroundOverlayGradientFirstColor: {
+		type: 'string',
+		default: '#36d1dc'
+	},
+	backgroundOverlayGradientFirstLocation: {
+		type: 'number',
+		default: 0
+	},
+	backgroundOverlayGradientSecondColor: {
+		type: 'string',
+		default: '#5b86e5'
+	},
+	backgroundOverlayGradientSecondLocation: {
+		type: 'number',
+		default: 100
+	},
 }
 
 export default sectionBlockAttributes

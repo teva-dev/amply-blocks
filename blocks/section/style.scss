@@ -1,0 +1,12 @@
+.wp-block-amply-blocks-section {
+
+	display: flex;
+	position: relative;
+	padding: 0 20px;
+
+	.innerblocks-wrap {
+		flex-basis: 100%;
+		word-break: keep-all;
+	}
+
+}
