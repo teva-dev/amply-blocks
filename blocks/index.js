@@ -12,3 +12,4 @@ import './editor.scss';
 import "./static";
 import "./dynamic";
 import "./section";
+import "./section-column";

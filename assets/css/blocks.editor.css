@@ -1,3 +1,10 @@
+.amply-blocks-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; }
+
 .amply-blocks-inspector-header-tabs.is-opened {
   padding: 0; }
 
@@ -58,6 +65,19 @@
   background: #C44D58;
   color: white;
   font-size: 1.2rem; }
+.wp-block-amply-blocks-section {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  position: relative;
+  padding: 0 20px; }
+  .wp-block-amply-blocks-section > .innerblocks-wrap > .editor-inner-blocks > .editor-block-list__layout {
+    display: -ms-flexbox;
+    display: flex; }
+    .wp-block-amply-blocks-section > .innerblocks-wrap > .editor-inner-blocks > .editor-block-list__layout > [data-type="amply-blocks/section-column"] {
+      -ms-flex: 1;
+          flex: 1; }
 .amply-blocks-background-type-control {
   margin: 0 0 1.5em 0; }
   .amply-blocks-background-type-control .components-base-control__title {
@@ -99,3 +119,303 @@
 .amply-popover-settings {
   padding: 10px;
   overflow: hidden; }
+.amply-inboarding-component {
+  background: #ffffff;
+  border: 1px solid #e7e7e7;
+  padding: 50px; }
+  .amply-inboarding-component .components-placeholder__label svg {
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 24px;
+    max-height: 24px;
+    margin-right: 5px; }
+  .amply-inboarding-component .amply-layout-picker {
+    width: 100%; }
+    .amply-inboarding-component .amply-layout-picker .amply-blocks-section-column-layout {
+      cursor: pointer;
+      width: calc( 100% / 6);
+      min-width: 5vw;
+      display: inline-block;
+      padding: 5px 5px 0px; }
+      .amply-inboarding-component .amply-layout-picker .amply-blocks-section-column-layout svg {
+        fill: #d5dadf; }
+      .amply-inboarding-component .amply-layout-picker .amply-blocks-section-column-layout:hover svg {
+        fill: #6d7882; }
+      .amply-inboarding-component .amply-layout-picker .amply-blocks-section-column-layout.selected svg {
+        fill: #6d7882; }
+  .amply-inboarding-component .amply-template-library {
+    font-size: 14px;
+    height: auto;
+    padding: 10px 20px;
+    margin-top: 10px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center; }
+    .amply-inboarding-component .amply-template-library svg {
+      margin-right: 10px; }
+
+.amply-library-modal .components-modal__content {
+  padding: 0; }
+  .amply-library-modal .components-modal__content .components-modal__header {
+    display: none; }
+  .amply-library-modal .components-modal__content .library-modal-control-panel {
+    background: #ffffff;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0px 10px rgba(25, 30, 35, 0.2);
+    z-index: 99999999; }
+    .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header {
+      display: -ms-flexbox;
+      display: flex; }
+      .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-logo {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+        -ms-flex-pack: start;
+            justify-content: flex-start; }
+        .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-logo .library-modal-header-tabs-button {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-align: center;
+              align-items: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+          padding: 17px 20px;
+          background: transparent;
+          border: 0; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-logo .library-modal-header-tabs-button.back-to-library:hover {
+            background: #f2f2f3; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-logo .library-modal-header-tabs-button.back-to-library:focus {
+            background: #f2f2f3; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-logo .library-modal-header-tabs-button.back-to-library:last-child {
+            border-right: 1px solid #e6e9ec; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-logo .library-modal-header-tabs-button svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px; }
+      .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-tabs {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+        -ms-flex-pack: center;
+            justify-content: center; }
+        .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-tabs .library-modal-header-tabs-button {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-align: center;
+              align-items: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+          width: 115px;
+          padding: 17px 0;
+          background: transparent;
+          font-weight: 600;
+          cursor: pointer;
+          border: 0; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-tabs .library-modal-header-tabs-button.is-selected {
+            background: #f2f2f3; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-tabs .library-modal-header-tabs-button:hover {
+            background: #f2f2f3; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-tabs .library-modal-header-tabs-button:focus {
+            background: #f2f2f3; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-tabs .library-modal-header-tabs-button svg {
+            margin-right: 5px; }
+      .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+        -ms-flex-pack: end;
+            justify-content: flex-end; }
+        .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions .library-modal-header-tabs-button {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-align: center;
+              align-items: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+          padding: 17px;
+          background: transparent;
+          font-weight: 600;
+          cursor: pointer;
+          border: 0; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions .library-modal-header-tabs-button.insert-button {
+            font-weight: normal; }
+            .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions .library-modal-header-tabs-button.insert-button svg {
+              width: 16px;
+              height: 16px;
+              margin-right: 10px; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions .library-modal-header-tabs-button.is-selected {
+            background: #f2f2f3; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions .library-modal-header-tabs-button:hover {
+            background: #f2f2f3; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions .library-modal-header-tabs-button:focus {
+            background: #f2f2f3; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions .library-modal-header-tabs-button:last-child {
+            border-left: 1px solid #e6e9ec; }
+          .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-header .library-modal-header-actions .library-modal-header-tabs-button svg {
+            width: 20px;
+            height: 20px; }
+    .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions {
+      display: -ms-flexbox;
+      display: flex;
+      padding: 15px;
+      background: #f2f2f3;
+      -ms-flex-pack: center;
+          justify-content: center; }
+      .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions .components-base-control .components-base-control__field {
+        margin-bottom: 0; }
+      .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions .library-modal-category-control {
+        min-width: 200px;
+        margin-right: 10px; }
+        .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions .library-modal-category-control select {
+          height: 30px;
+          min-width: 150px;
+          padding: 0 5px; }
+      .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions .library-modal-search-control {
+        min-width: 200px;
+        position: relative; }
+        .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions .library-modal-search-control:after {
+          content: "\F179";
+          font-family: dashicons;
+          pointer-events: none;
+          display: block;
+          position: absolute;
+          right: 6px;
+          top: 6px;
+          font-size: 18px; }
+  .amply-library-modal .components-modal__content .library-modal-error .components-notice {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center; }
+    .amply-library-modal .components-modal__content .library-modal-error .components-notice .components-button {
+      top: unset; }
+  .amply-library-modal .components-modal__content .library-modal-content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 50% 50%;
+        grid-template-columns: 50% 50%;
+    padding: 20px; }
+    .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item {
+      border: 1px solid #ccc;
+      margin: 20px;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+          flex-direction: column;
+      -ms-flex-pack: end;
+          justify-content: flex-end; }
+      .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item:hover .library-modal-content__footer .library-modal-content__footer_actions, .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item:active .library-modal-content__footer .library-modal-content__footer_actions, .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item:focus .library-modal-content__footer .library-modal-content__footer_actions, .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item:focus-within .library-modal-content__footer .library-modal-content__footer_actions {
+        opacity: 1; }
+      .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__preview {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+            align-items: center;
+        height: 100%; }
+        .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__preview img {
+          margin: 0;
+          width: 100%;
+          height: auto;
+          vertical-align: middle; }
+      .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__footer {
+        border-top: 1px solid #ccc;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: end;
+            justify-content: flex-end; }
+        .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__footer .library-modal-content__footer_meta {
+          -ms-flex: 4;
+              flex: 4; }
+          .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__footer .library-modal-content__footer_meta .library-modal-content__footer_meta_title {
+            margin-left: 15px; }
+          .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__footer .library-modal-content__footer_meta .library-modal-content__footer_meta_author {
+            margin-left: 15px; }
+        .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__footer .library-modal-content__footer_actions {
+          opacity: 0;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex: 3;
+              flex: 3;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+          padding: 10px 15px;
+          background-color: rgba(245, 245, 245, 0.7);
+          border-left: 1px solid rgba(0, 0, 0, 0.05);
+          transition: opacity .1s ease-in-out; }
+          .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__footer .library-modal-content__footer_actions button {
+            position: relative;
+            -ms-flex-align: center;
+                align-items: center; }
+            .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__footer .library-modal-content__footer_actions button svg {
+              margin-right: 5px; }
+            .amply-library-modal .components-modal__content .library-modal-content .library-modal-content__item .library-modal-content__footer .library-modal-content__footer_actions button:first-child {
+              margin-right: 10px; }
+  .amply-library-modal .components-modal__content .library-modal-loader {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    height: 100px; }
+  .amply-library-modal .components-modal__content .library-modal-preview {
+    background: #f2f2f3;
+    height: 750px;
+    max-height: 85vh;
+    overflow: hidden;
+    padding: 25px 30px 30px; }
+    .amply-library-modal .components-modal__content .library-modal-preview iframe {
+      width: 150%;
+      height: 150%;
+      transform: scale(0.666) translateX(-25%) translateY(-25%); }
+  .amply-library-modal .components-modal__content .components-modal__icon-container svg {
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 24px;
+    max-height: 24px;
+    margin-right: 10px; }
+
+.amply-library-modal.is-preview {
+  overflow: hidden; }
+
+.library-modal-category-selector.components-popover:not(.is-mobile).is-bottom {
+  z-index: 999999; }
+
+.library-modal-category-selector .components-menu-item__button {
+  padding-left: 2rem; }
+  .library-modal-category-selector .components-menu-item__button.has-icon {
+    padding-left: .5em; }
+
+@media (max-width: 782px) {
+  .amply-inboarding-component {
+    padding: 5em 1em; }
+    .amply-inboarding-component .amply-layout-picker .amply-blocks-section-column-layout {
+      width: calc( 100% / 3); }
+  .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions {
+    -ms-flex-direction: column;
+        flex-direction: column; }
+    .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions .library-modal-category-control {
+      margin: 0 0 10px 0; }
+    .amply-library-modal .components-modal__content .library-modal-control-panel .library-modal-actions .library-modal-search-control {
+      width: 100%; }
+  .amply-library-modal .components-modal__content .library-modal-content {
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%; } }
+
+@media (max-width: 1439px) {
+  .amply-library-modal {
+    width: 100%;
+    max-width: 990px; } }
+
+@media (min-width: 1440px) {
+  .amply-library-modal {
+    width: 100%;
+    max-width: 1200px; } }

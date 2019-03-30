@@ -124,6 +124,32 @@ const sectionBlockAttributes = {
 		type: 'number',
 		default: 100
 	},
+	columns: {
+		type: 'number'
+	},
+	layout: {
+		type: 'string'
+	},
+	layoutTablet: {
+		type: 'string',
+		default: 'equal'
+	},
+	layoutMobile: {
+		type: 'string',
+		default: 'equal'
+	},
+	hide: {
+		type: 'boolean',
+		default: false
+	},
+	hideTablet: {
+		type: 'boolean',
+		default: false
+	},
+	hideMobile: {
+		type: 'boolean',
+		default: false
+	},
 }
 
 export default sectionBlockAttributes

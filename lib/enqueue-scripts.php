@@ -32,6 +32,10 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_edito
  * Enqueue frontend and editor JavaScript and CSS assets.
  */
 function enqueue_assets() {
+	if ( is_admin() ) {
+		return;
+	}
+
 	$style_path = '/assets/css/blocks.style.css';
 	wp_enqueue_style(
 		'amply-blocks',

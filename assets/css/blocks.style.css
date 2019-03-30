@@ -24,11 +24,13 @@
   float: none;
   margin: 6px 2px 10px 0; }
 .wp-block-amply-blocks-section {
-  display: -ms-flexbox;
-  display: flex;
   position: relative;
   padding: 0 20px; }
   .wp-block-amply-blocks-section .innerblocks-wrap {
-    -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
+    display: -ms-flexbox;
+    display: flex;
     word-break: keep-all; }
+    .wp-block-amply-blocks-section .innerblocks-wrap .wp-block-amply-blocks-section-column {
+      position: relative;
+      -ms-flex: 1;
+          flex: 1; }

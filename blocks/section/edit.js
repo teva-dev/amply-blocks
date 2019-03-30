@@ -3,9 +3,13 @@
  */
 
 import classnames from 'classnames';
+
 import BackgroundTypeControl from '../../components/background-type-control';
 import ControlPanelControl from '../../components/control-panel-control';
+import layouts from './layouts.js';
+import Inboarding from './inboarding';
 
+const { times } = lodash;
 const { __ } = wp.i18n;
 const { InnerBlocks, InspectorControls, ColorPalette, MediaPlaceholder } = wp.editor
 const { Fragment } = wp.element
@@ -51,13 +55,19 @@ const SectionBlockEdit = ({
 		backgroundOverlayGradientFirstColor,
 		backgroundOverlayGradientFirstLocation,
 		backgroundOverlayGradientSecondColor,
-		backgroundOverlayGradientSecondLocation
+		backgroundOverlayGradientSecondLocation,
+		columns,
+		layout,
+		layoutTablet,
+		layoutMobile,
 	} = props.attributes
 
 	if ( undefined === id || id.substr( id.length - 8 ) !== props.clientId.substr( 0, 8 ) ) {
 		const blockInstanceId = `amply-blocks-section-${ props.clientId.substr( 0, 8 ) }`;
 		props.setAttributes({ id: blockInstanceId });
 	}
+
+	const ALLOWED_BLOCKS = [ 'amply-blocks/section' ];
 
 	let background, overlayBackground
 
@@ -134,7 +144,11 @@ const SectionBlockEdit = ({
 		...overlayBackground
 	}
 	const classes = classnames(
-		props.className
+		props.className,
+		`has-${ columns }-columns`,
+		`has-desktop-${ layout }-layout`,
+		`has-tablet-${ layoutTablet }-layout`,
+		`has-mobile-${ layoutMobile }-layout`,
 	)
 
 	const changeBackgroundType = value => {
@@ -242,6 +256,71 @@ const SectionBlockEdit = ({
 	const changeBackgroundOverlayGradientSecondLocation = value => {
 		props.setAttributes({ backgroundOverlayGradientSecondLocation: value });
 	};
+	const setupColumns = ( columns, layout ) => {
+		if ( 1 >= columns ) {
+			props.setAttributes({
+				columns,
+				layout,
+				layoutTablet: 'equal',
+				layoutMobile: 'equal'
+			});
+		} else {
+			props.setAttributes({
+				columns,
+				layout,
+				layoutTablet: 'equal',
+				layoutMobile: 'collapsedRows'
+			});
+		}
+	};
+	const updateColumnsWidth = ( columns, layout ) => {
+		( sectionBlock.innerBlocks ).map( ( innerBlock, i ) => {
+			updateBlockAttributes( innerBlock.clientId, {
+				columnWidth: parseFloat( layouts[columns][layout][i])
+			});
+		});
+	};
+	const changeColumns = value => {
+		if ( 6 >= value ) {
+			props.setAttributes({
+				columns: value,
+				layout: 'equal',
+				layoutTablet: 'equal',
+				layoutMobile: 'collapsedRows'
+			});
+			updateColumnsWidth( value, 'equal' );
+		}
+
+		if ( 6 < value ) {
+			props.setAttributes({
+				columns: 6,
+				layout: 'equal',
+				layoutTablet: 'equal',
+				layoutMobile: 'collapsedRows'
+			});
+			updateColumnsWidth( 6, 'equal' );
+		}
+
+		if ( 1 >= value ) {
+			props.setAttributes({
+				columns: 1,
+				layout: 'equal',
+				layoutTablet: 'equal',
+				layoutMobile: 'equal'
+			});
+			updateColumnsWidth( 1, 'equal' );
+		}
+	};
+
+	const getColumnsTemplate = columns => {
+		return times( columns, i => [ 'amply-blocks/section-column', { columnWidth: parseFloat( layouts[columns][layout][i]) } ]);
+	};
+
+	if ( ! columns ) {
+		return (
+			<Inboarding setupColumns={ setupColumns } />
+		);
+	}
 
 	return (
 
@@ -293,8 +372,21 @@ const SectionBlockEdit = ({
 				{ 'layout' === tab && (
 
 					<Fragment>
-						<h1>tab = Layout</h1>
+		
+						<PanelBody title={ __( 'Columns & Layout' ) }>
+
+							<RangeControl
+								label={ __( 'Columns' ) }
+								value={ columns }
+								onChange={ changeColumns }
+								min={ 1 }
+								max={ 6 }
+							/>
+
+						</PanelBody>
+
 					</Fragment>
+
 				) || 'style' === tab && (
 
 					<Fragment>
@@ -711,7 +803,11 @@ const SectionBlockEdit = ({
 
 				<div className="innerblocks-wrap">
 
-					<InnerBlocks />
+					<InnerBlocks
+						allowedBlocks={ ALLOWED_BLOCKS }
+						template={ getColumnsTemplate( columns ) }
+						templateLock="all"
+					/>
 
 				</div>
 

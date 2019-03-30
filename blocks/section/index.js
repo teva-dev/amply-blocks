@@ -3,8 +3,9 @@
  */
 import icon from './icon';
 import './style.scss';
+import './editor.scss';
 
-import sectionBlockAttributes from './attributes'
+import sectionBlockAttributes from './attributes';
 import SectionBlockEdit from './edit';
 import SectionBlockSave from './save';
 
@@ -14,7 +15,6 @@ import SectionBlockSave from './save';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const {	compose, withState } = wp.compose;
-
 const { withDispatch, withSelect } = wp.data;
 
 /**

@@ -39,10 +39,28 @@ const sectionBlockSave = props => {
 		backgroundOverlayGradientFirstLocation,
 		backgroundOverlayGradientSecondColor,
 		backgroundOverlayGradientSecondLocation,
+		columns,
+		layout,
+		layoutTablet,
+		layoutMobile,
+		hide,
+		hideTablet,
+		hideMobile,
 	} = props.attributes;
 
+	const desktopLayout = hide ? '' : `has-desktop-${ layout }-layout`;
+	const tabletLayout = hideTablet ? '' : `has-tablet-${ layoutTablet }-layout`;
+	const mobileLayout = hideMobile ? '' : `has-mobile-${ layoutMobile }-layout`;
+
 	const classes = classnames(
-		props.className
+		props.className,
+		`has-${ columns }-columns`,
+		desktopLayout,
+		tabletLayout,
+		mobileLayout,
+		{ 'hide-in-desktop': hide },
+		{ 'hide-in-tablet': hideTablet },
+		{ 'hide-in-mobile': hideMobile },
 	);
 
 	let background, overlayBackground
